@@ -1,0 +1,13 @@
+{
+    "name": "mas/tax-app",
+    "description": "the Tax app is an application for caclculating s for you . just lay down and dont worry.",
+    "type": "project",
+    "license": "MIT License",
+    "authors": [
+        {
+            "name": "Mohammad Ali Sadeghi",
+            "email": "mas1375@outlook.com"
+        }
+    ],
+    "require": {}
+}
