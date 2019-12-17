@@ -1,6 +1,6 @@
 {
-    "name": "mas/tax-app",
-    "description": "the Tax app is an application for caclculating s for you . just lay down and dont worry.",
+    "name": "mas/tax",
+    "description": "the Tax  is an application for calculating taxes stuff for you . just lay down and don't worry.",
     "type": "project",
     "license": "MIT License",
     "authors": [
@@ -9,5 +9,12 @@
             "email": "mas1375@outlook.com"
         }
     ],
+
+    "autoload": {
+        "psr-4": {
+            "src\\": "src/"
+        }
+    },
+
     "require": {}
 }
