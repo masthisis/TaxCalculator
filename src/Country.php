@@ -25,7 +25,7 @@ class Country implements TaxInterface
     }
 
     /**
-     * get  income for the current country.
+     * get  income for the country.
      *
      * @return int
      */
@@ -41,7 +41,7 @@ class Country implements TaxInterface
 
 
     /**
-     * get average tax Rate for the current country.
+     * get average tax Rate for the country.
      *
      * @return int
      */

@@ -29,6 +29,7 @@ class State implements TaxInterface
 
 
     /**
+     * get total taxable Incomes for the state.
      * @return int
      */
     public function Income() :int
@@ -44,7 +45,7 @@ class State implements TaxInterface
 
 
     /**
-     * get's total taxes from current state.
+     * get total taxes from the state.
      * @return integer
      */
     public function Tax() :int
@@ -59,7 +60,7 @@ class State implements TaxInterface
 
 
     /**
-     * get tax average for current state;
+     * get tax average for the state;
      * @return int
      */
     public function AvgTax() :int
@@ -68,7 +69,7 @@ class State implements TaxInterface
     }
 
     /**
-     * get average tax rate for current state;
+     * get average tax rate for the state;
      * @return int
      */
     public function AvgTaxRate() :int
