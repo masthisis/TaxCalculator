@@ -1,9 +1,9 @@
 <?php
-namespace interfaces;
+namespace src\interfaces;
 
 interface TaxInterface
 {
-    public function tax() :int;
+    public function tax() :float;
 
-    public function Income() :int;
+    public function Income() :float;
 }

@@ -1,4 +1,11 @@
-<?php require_once 'Controllers/IndexController.php'; ?>
+<?php require_once '../Controllers/IndexController.php'; ?>
+
+<?php 
+$counties = 0;
+foreach($country->states as $state){
+    $counties +=count($state->counties);
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,18 +19,32 @@
     <div class="border-1 m-auto mt-4 w-4/6">
         <div class="bg-gray-600 rounded border-2 text-xl text-white p-4 text-center">tax information's</div>
 
-        <div class="bg-gray-400 rounded border-2 p-2 mt-1"><span class="font-bold bg-red-100 m-4">Total taxes for country :</span>
-            <?=$country->tax()?>
+        <div class="bg-green-400 rounded border-2 p-2 mt-1 "><span class="font-bold bg-red-300 m-4">Total taxes for <?=$country->name?> :</span>
+           <span class="pl-2 pr-2 font-bold mr-64"><?=$country->tax()?></span>
+            states : <span class="ml-2 bg-blue-500 text-black font-semibold pr-2 pl-2 rounded"><?=count($country->states)?></span>    
+            counties :<span class="ml-2 bg-red-500 text-black font-semibold pr-2 pl-2 rounded"><?=$counties?></span>    
         </div>
-        <div class="bg-gray-400 rounded border-2 p-2 mt-1"><span class="font-bold bg-red-100 m-4">Total average tax Rate : <?=$country->AvgTaxRate()?> </span></div>
-        <div class="bg-gray-400 rounded border-2 p-2 mt-1"><span class="font-bold bg-red-100 m-4">Average tax Rate for each state :
-            <?php foreach ($country->states as $state){echo $state->AvgTaxRate();}?>
+        <div class="bg-blue-400 rounded border-2 p-2 mt-1"><span class="font-bold bg-red-300 m-4">Total average tax Rate : <?=$country->AvgTaxRate()?> </span></div>
+        <div class="bg-red-400 rounded border-2 p-2 mt-1"><span class="font-bold bg-red-300 m-4">Average tax Rate for each state : <br>
+            <?php foreach ($country->states as $state){
+                echo $state->name . ': ';
+                echo $state->AvgTaxRate();
+                echo '<br>';
+                }?>
             </span><br></div>
-        <div class="bg-gray-400 rounded border-2 p-2 mt-1"><span class="font-bold bg-red-100 m-4">Average tax for each state :
-             <?php foreach ($country->states as $state){echo $state->AvgTax();}?>
+        <div class="bg-gray-400 rounded border-2 p-2 mt-1"><span class="font-bold bg-red-300 m-4">Average tax for each state : <br/>
+             <?php foreach ($country->states as $state){
+                 echo $state->name . ': ';
+                 echo $state->AvgTax();
+                 echo '<br>';
+                 }?>
             </span><br></div>
-        <div class="bg-gray-400 rounded border-2 p-2 mt-1"><span class="font-bold bg-red-100 m-4">Total tax amount for each state:
-              <?php foreach ($country->states as $state){echo $state->Tax();}?>
+        <div class="bg-indigo-400 rounded border-2 p-2 mt-1"><span class="font-bold bg-red-300 m-4">Total tax amount for each state: <br/>
+              <?php foreach ($country->states as $state){
+                  echo $state->name . ': ';
+                  echo $state->Tax();
+                  echo '<br>';
+                  }?>
             </span><br></div>
     </div>
 </div>

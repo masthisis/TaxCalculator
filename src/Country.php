@@ -1,14 +1,14 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace src;
 
-use interfaces\TaxInterface;
+use src\interfaces\TaxInterface;
 
 class Country implements TaxInterface
 {
     public $states = [];
 
-    public string $name;
+    public  $name;
 
 
     public function __construct($name)
@@ -21,15 +21,15 @@ class Country implements TaxInterface
      */
     public function setStates(State $state): void
     {
-        $this->states = $state;
+        $this->states[] = $state;
     }
 
     /**
      * get  income for the country.
      *
-     * @return int
+     * @return float
      */
-    public function Income() :int
+    public function Income() :float
     {
         return array_reduce($this->states,
             function ($sum, $state) {
@@ -43,25 +43,22 @@ class Country implements TaxInterface
     /**
      * get average tax Rate for the country.
      *
-     * @return int
+     * @return float
      */
-    public function AvgTaxRate() :int
+    public function AvgTaxRate() :float
     {
-        return array_reduce($this->states,
-            function ($sum, $state) {
-                $sum += $state->Tax() / $state->Income();
-                return $sum;
-            },
-            0);
+        return  $this->Tax() / $this->Income();
+
     }
 
     /**
      * get total taxes for the current country.
      *
-     * @return int
+     * @return float
      */
-    public function Tax() :int
+    public function Tax() :float
     {
+
         return array_reduce($this->states,
             function ($sum, $state) {
                 $sum += $state->Tax();

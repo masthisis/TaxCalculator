@@ -1,8 +1,8 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace src;
 
-use interfaces\TaxInterface;
+use src\interfaces\TaxInterface;
 
 
 class State implements TaxInterface
@@ -30,13 +30,13 @@ class State implements TaxInterface
 
     /**
      * get total taxable Incomes for the state.
-     * @return int
+     * @return float
      */
-    public function Income() :int
+    public function Income() :float
     {
         return array_reduce($this->counties,
             function ($sum, $county) {
-                $sum = $county->Income();
+                $sum += $county->Income();
                 return $sum;
             },
             0);
@@ -46,13 +46,13 @@ class State implements TaxInterface
 
     /**
      * get total taxes from the state.
-     * @return integer
+     * @return float
      */
-    public function Tax() :int
+    public function Tax() :float
     {
         return array_reduce($this->counties,
             function ($sum, $county) {
-                $sum = $county->Tax();
+                $sum += $county->Tax();
                 return $sum;
             },
             0);
@@ -61,20 +61,20 @@ class State implements TaxInterface
 
     /**
      * get tax average for the state;
-     * @return int
+     * @return float
      */
-    public function AvgTax() :int
+    public function AvgTax() :float
     {
         return $this->Tax() / count($this->counties);
     }
 
     /**
      * get average tax rate for the state;
-     * @return int
+     * @return float
      */
-    public function AvgTaxRate() :int
+    public function AvgTaxRate() :float
     {
-        return $this->Tax() * $this->Income();
+        return ($this->Tax() / $this->Income());
     }
 
 

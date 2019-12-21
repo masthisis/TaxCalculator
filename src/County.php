@@ -1,8 +1,7 @@
-<?php
-
+<?php declare(strict_types = 1);
 namespace src;
 
-use interfaces\TaxInterface;
+use src\interfaces\TaxInterface;
 
 
 class County implements TaxInterface
@@ -73,19 +72,19 @@ class County implements TaxInterface
     /**
      * get taxable income according to discount.
      *
-     * @return int
+     * @return float
      */
-    public function Income() :int
+    public function Income() :float
     {
-        return ( $this->income - ($this->income * $this->discount) );
+        return $this->income - ($this->income * $this->discount);
     }
 
     /**
      * get Tax amount for the county.
      *
-     * @return int
+     * @return float
      */
-    public function Tax() :int
+    public function Tax() :float
     {
         return ($this->Income() * $this->taxRate);
     }
