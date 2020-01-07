@@ -1,21 +1,13 @@
-<?php declare(strict_types = 1);
-
-namespace src;
-
-use src\interfaces\TaxInterface;
+<?php declare(strict_types=1);
 
 
-class State implements TaxInterface
+namespace Tax;
+
+use Tax\BaseEntity;
+
+class State extends BaseEntity
 {
     public  $counties = [];
-
-    public string $name;
-
-
-    public function __construct($name)
-    {
-        $this->name = $name;
-    }
 
     /**
      * @param County $county
@@ -48,11 +40,11 @@ class State implements TaxInterface
      * get total taxes from the state.
      * @return float
      */
-    public function Tax() :float
+    public function calculateTax() :float
     {
         return array_reduce($this->counties,
             function ($sum, $county) {
-                $sum += $county->Tax();
+                $sum += $county->calculateTax();
                 return $sum;
             },
             0);
@@ -65,7 +57,7 @@ class State implements TaxInterface
      */
     public function AvgTax() :float
     {
-        return $this->Tax() / count($this->counties);
+        return $this->calculateTax() / count($this->counties);
     }
 
     /**
@@ -74,9 +66,7 @@ class State implements TaxInterface
      */
     public function AvgTaxRate() :float
     {
-        return ($this->Tax() / $this->Income());
+        return $this->calculateTax() / $this->Income();
     }
-
-
 
 }

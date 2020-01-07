@@ -1,20 +1,15 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
-namespace src;
 
-use src\interfaces\TaxInterface;
+namespace Tax;
 
-class Country implements TaxInterface
+
+use Tax\BaseEntity;
+use Money\Money;
+
+class Country extends BaseEntity
 {
     public $states = [];
-
-    public  $name;
-
-
-    public function __construct($name)
-    {
-        $this->name = $name;
-    }
 
     /**
      * @param State $state
@@ -47,8 +42,7 @@ class Country implements TaxInterface
      */
     public function AvgTaxRate() :float
     {
-        return  $this->Tax() / $this->Income();
-
+        return  $this->calculateTax() / $this->Income();
     }
 
     /**
@@ -56,12 +50,12 @@ class Country implements TaxInterface
      *
      * @return float
      */
-    public function Tax() :float
+    public function calculateTax() :float
     {
 
         return array_reduce($this->states,
             function ($sum, $state) {
-                $sum += $state->Tax();
+                $sum += $state->calculateTax();
                 return $sum;
             },
             0);
@@ -70,4 +64,3 @@ class Country implements TaxInterface
 
 
 }
-

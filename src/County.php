@@ -1,12 +1,14 @@
-<?php declare(strict_types = 1);
-namespace src;
-
-use src\interfaces\TaxInterface;
+<?php declare(strict_types=1);
 
 
-class County implements TaxInterface
+namespace Tax;
+
+use Tax\BaseEntity;
+use Money\Money;
+
+
+class County extends BaseEntity
 {
-
     /**
      * a number between  0 - 1.
      * @var float
@@ -14,26 +16,15 @@ class County implements TaxInterface
     public float $taxRate;
 
     /**
-     * @var float
+     * @var Money
      */
-    public float $income;
-
-    /**
-     * @var string
-     */
-    public string $name;
+    public  $income;
 
     /**
      * a number between  0 - 1.
      * @var float
      */
     public float $discount;
-
-
-    public function __construct($name)
-    {
-        $this->name = $name;
-    }
 
     /**
      * @param $taxRate
@@ -58,7 +49,7 @@ class County implements TaxInterface
 
 
     /**
-     * @param $discount
+     * @param float $discount
      * @return $this
      */
     public function setDiscount($discount)
@@ -72,11 +63,15 @@ class County implements TaxInterface
     /**
      * get taxable income according to discount.
      *
-     * @return float
+     * @return Money.
      */
-    public function Income() :float
+    public function Income()
     {
-        return $this->income - ($this->income * $this->discount);
+        $income = Money::USD($this->income);
+        $discount = $income->multiply($this->discount);
+        $income->subtract($discount);
+
+        return $income;
     }
 
     /**
@@ -84,16 +79,9 @@ class County implements TaxInterface
      *
      * @return float
      */
-    public function Tax() :float
+    public function calculateTax()
     {
-        return ($this->Income() * $this->taxRate);
+        return $this->Income() * $this->taxRate;
     }
 
-
 }
-
-
-
-
-
-

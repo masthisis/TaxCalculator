@@ -1,8 +1,8 @@
 {
     "name": "mas/tax",
     "description": "the Tax  is an application for calculating taxes stuff for you . just lay down and don't worry.",
-    "type": "project",
-    "license": "MIT License",
+    "type": "library",
+    "license": "MIT",
     "authors": [
         {
             "name": "Mohammad Ali Sadeghi",
@@ -12,9 +12,17 @@
 
     "autoload": {
         "psr-4": {
-            "src\\": "src/"
+            "Tax\\": "src/"
         }
     },
 
-    "require": {}
+    "require": {
+        "fzaninotto/faker": "^1.9",
+        "moneyphp/money": "^3.3"
+    },
+
+    "require-dev": {
+        "phpunit/phpunit": "^8",
+        "nunomaduro/phpinsights": "^1.2"
+    }
 }
