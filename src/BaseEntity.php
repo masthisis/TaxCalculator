@@ -28,3 +28,4 @@ abstract class BaseEntity implements HasNameInterface, HasTaxInterface
     }
 
 }
+
