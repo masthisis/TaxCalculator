@@ -24,7 +24,9 @@ abstract class BaseEntity implements HasNameInterface, HasTaxInterface
 
     public function getName()
     {
+        
         return $this->name;
+
     }
 
 }
